@@ -1,0 +1,1012 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20190912184815)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190912184815_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190912184815"]]
+  ↳ bin/rails:9
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateGifts (20190912185040)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "gifts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "price" integer, "description" varchar, "link" varchar, "image" varchar, "category" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190912185040_create_gifts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190912185040"]]
+  ↳ bin/rails:9
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to CreateFavorites (20190912185137)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "gift_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_d15744e438"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_e68ed51a15"
+FOREIGN KEY ("gift_id")
+  REFERENCES "gifts" ("id")
+)[0m
+  ↳ db/migrate/20190912185137_create_favorites.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/migrate/20190912185137_create_favorites.rb:3
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_gift_id" ON "favorites" ("gift_id")[0m
+  ↳ db/migrate/20190912185137_create_favorites.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190912185137"]]
+  ↳ bin/rails:9
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-07-28 22:08:33.769780"], ["updated_at", "2020-07-28 22:08:33.769780"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mFavorite Destroy (0.1ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  ↳ db/seeds.rb:8
+  [1m[36mGift Destroy (0.1ms)[0m  [1m[31mDELETE FROM "gifts"[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (0.3ms)[0m  [1m[31mDELETE FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "price", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Diptyque Baies Scented Candle (6.5oz)"], ["price", 65], ["description", "What it is: An irresistibly fresh and fruity scented candle that warms your heart and home."], ["link", "https://shop.nordstrom.com/s/diptyque-baies-berries-scented-candle/3227984"], ["image", "https://n.nordstrommedia.com/id/sr3/868a2e09-6ce0-493b-b406-06f711edadfe.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=1660&h=2546"], ["category", "Home & Bath"], ["created_at", "2020-07-28 22:08:43.534624"], ["updated_at", "2020-07-28 22:08:43.534624"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (1.6ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "price", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Apple AirPods"], ["price", 199], ["description", "The new AirPods — complete with Wireless Charging Case — deliver the wireless headphone experience, reimagined. Just pull them out of the case and they’re ready to use with your iPhone, Apple Watch, iPad, or Mac."], ["link", "https://www.apple.com/shop/product/MRXJ2/airpods-with-wireless-charging-case"], ["image", "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MRXJ2?wid=1000&hei=1000&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1551489675083"], ["category", "Tech"], ["created_at", "2020-07-28 22:08:43.539643"], ["updated_at", "2020-07-28 22:08:43.539643"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "price", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Postcards from the New Yorker"], ["price", 23], ["description", "Postcards of the New Yorker's striking and sometimes controversial covers from such artists as Peter Arno, William Steig, Saul Steinberg, Jean-Jacques Sempé, and Art Spiegelman."], ["link", "https://www.amazon.com/Postcards-New-Yorker-Hundred-Decades/dp/1846144698/ref=asc_df_1846144698/?tag=hyprod-20&linkCode=df0&hvadid=312176357204&hvpos=1o2&hvnetw=g&hvrand=10246754882679800508&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9026929&hvtargid=aud-799146894166:pla-373217954781&psc=1&tag=&ref=&adgrpid=60258871857&hvpone=&hvptwo=&hvadid=312176357204&hvpos=1o2&hvnetw=g&hvrand=10246754882679800508&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9026929&hvtargid=aud-799146894166:pla-373217954781"], ["image", "https://images-na.ssl-images-amazon.com/images/I/81yKExB%2BcOL.jpg"], ["category", "Art & Photography"], ["created_at", "2020-07-28 22:08:43.545093"], ["updated_at", "2020-07-28 22:08:43.545093"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "price", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Moonlight Short Pajamas"], ["price", 55], ["description", "Contrast piping outlines a shorty pajama set with styling borrowed from the boys and updated in a temptingly soft and lightweight knit."], ["link", "https://shop.nordstrom.com/s/nordstrom-lingerie-moonlight-short-pajamas/3837466?origin=keywordsearch-personalizedsort&breadcrumb=Home%2FAll%20Results&color=navy%20peacoat"], ["image", "https://n.nordstrommedia.com/id/sr3/357046e1-93e7-484d-b014-9e79a2ca88d6.jpeg?crop=pad&pad_color=FFF&format=jpeg&w=780&h=1196"], ["category", "Clothing"], ["created_at", "2020-07-28 22:08:43.550930"], ["updated_at", "2020-07-28 22:08:43.550930"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "price", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Ember® Ceramic Mug (10oz)"], ["price", 80], ["description", "Prolong the enjoyment of your coffee or tea with the world’s first temperature control mug. Ember will maintain that temperature for approximately one hour, so your hot beverage is perfect."], ["link", "https://ember.com/products/ember-ceramic-mug?gclid=Cj0KCQjw2efrBRD3ARIsAEnt0ej8oZMafKwfFAOz_B0Vp65dip85Zpv7fEMASap-50TkrBSx0MlgqRoaAlFdEALw_wcB&variant=46287914958"], ["image", "https://cdn.shopify.com/s/files/1/1080/6594/products/ember_ceramic_mug_black_10_hero_600x.jpg?v=1567106411"], ["category", "Kitchen"], ["created_at", "2020-07-28 22:08:43.555052"], ["updated_at", "2020-07-28 22:08:43.555052"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "price", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Weezie Makeup Towels (pair)"], ["price", 40], ["description", "Tired of makeup stains? Us too. Now you have the perfect towel to wash the day off. This pair of navy makeup towels makes a great gift and is the perfect thing to stockpile in your guest bathroom."], ["link", "https://weezietowels.com/products/makeup-towel"], ["image", "https://cdn.shopify.com/s/files/1/0019/0352/5941/products/Eyelids_a2e7bbbe-a9af-4bee-9a5f-400868be15f0_800x704_crop_center.jpg?v=1558028038"], ["category", "Home & Bath"], ["created_at", "2020-07-28 22:08:43.560498"], ["updated_at", "2020-07-28 22:08:43.560498"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "price", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Sugarfina x Casamigos 3-piece Candy Bento Box"], ["price", 28], ["description", "We’ve collaborated with our friends at Casamigos Tequila to create a new line of tequila-infused candies."], ["link", "https://www.sugarfina.com/casamigos-3pc-bento-box"], ["image", "https://sugarfina-prod.imagizer.com/media/catalog/product/cache/image/e9c3970ab036de70892d86c6d221abfe/c/a/casamigos-you-had-me-at-tequila-candy_bentobox_open_copy_1.jpg"], ["category", "Food & Beverage"], ["created_at", "2020-07-28 22:08:43.564453"], ["updated_at", "2020-07-28 22:08:43.564453"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "price", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "City Tea Towels"], ["price", 18], ["description", "This is a flour sack towel, a fabric which has been used for generations, and it is light, 100% cotton and dries quickly. Available cities include New York, San Francisco, Atlanta, Seattle, Las Vegas, Austin, New Orleans, Boston, Chicago, Miami, LA, Detroit, Nashville and more!"], ["link", "https://claudiapearson.com/product-category/tea-towels/"], ["image", "https://claudiapearson.com/wp-content/uploads/2013/11/CP-towel-tea-NYC-6776-copy-e1384534024799-645x575.jpg"], ["category", "Kitchen"], ["created_at", "2020-07-28 22:08:43.569505"], ["updated_at", "2020-07-28 22:08:43.569505"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "price", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Reversible Ostrich Travel Pillow"], ["price", 40], ["description", "This lightweight two-in-one travel companion can be worn as a neck support or as a combined eye mask/head pillow. An ultra soft cover contains silicone micro-beads that block light and reduces sound. Handmade in Spain."], ["link", "https://store.moma.org/tech/featured/life-hacks/reversible-ostrich-travel-pillow/113126-113126.html?cgid=tech-featured-life-hacks#start=14"], ["image", "https://store.moma.org/dw/image/v2/BBQC_PRD/on/demandware.static/-/Sites-master-moma/default/dw6c32a1cc/images/113126_a.jpg?sw=626&sh=626&sm=cut"], ["category", "Travel"], ["created_at", "2020-07-28 22:08:43.573470"], ["updated_at", "2020-07-28 22:08:43.573470"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.6ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "price", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Wire Mesh Bowls"], ["price", 48], ["description", "This eye-catching bowl is ideal for serving and storing fruit: the double-walled mesh design allows for air circulation, keeping your fruit fresh. Powder-coated steel. Hand wash only."], ["link", "https://store.moma.org/for-the-home/kitchen-dining/wire-mesh-bowls/1526.html?cgid=for-the-home-kitchen-dining&dwvar_1526_color=Red#view=grid&start=1"], ["image", "https://store.moma.org/dw/image/v2/BBQC_PRD/on/demandware.static/-/Sites-master-moma/default/dw6df4b50d/images/127267_a.jpg?sw=626&sh=626&sm=cut"], ["category", "Kitchen"], ["created_at", "2020-07-28 22:08:43.578821"], ["updated_at", "2020-07-28 22:08:43.578821"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.9ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "price", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Stop, Drop & Brew"], ["price", 40], ["description", "Easy every day brewing is all yours with this Teamaker and tea bundle! Perfect for cosy sipping sessions at home or as the ultimate desk buddy, just pop your tea in, add hot water and let the genius Teamaker take care of the rest!"], ["link", "https://www.t2tea.com/en/us/gifts/tea-and-teaware-packs/stop--drop-brew-T145AK423.html"], ["image", "https://www.t2tea.com/dw/image/v2/AASF_PRD/on/demandware.static/-/Sites-masterCatalog_t2/default/dw680b8714/images/products/T145AK423_stop-drop-&-brew_p2.png?sw=555&sh=555&sm=fit"], ["category", "Food & Beverage"], ["created_at", "2020-07-28 22:08:43.582745"], ["updated_at", "2020-07-28 22:08:43.582745"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (1.8ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "price", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Lush The Night Garden"], ["price", 40], ["description", "Drift away to dreamland with this quartet of gifts perfect for dry, sensitive skin. Bestsellers like Buffy scrub away rough bits while cult favorite Sleepy comes in both a shower gel and lotion to soothe skin and restless souls in a one-two punch."], ["link", "https://www.lushusa.com/gifts/gift-sets/the-night-garden/08025.html"], ["image", "https://www.lushusa.com/dw/image/v2/AAHL_PRD/on/demandware.static/-/Sites-lushcosmetics-export/default/dw6adfaf70/images/product/08025_b.jpg?sw=300"], ["category", "Home & Bath"], ["created_at", "2020-07-28 22:08:43.586762"], ["updated_at", "2020-07-28 22:08:43.586762"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+Started POST "/users" for ::1 at 2020-07-28 17:10:10 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"dad4you", "password"=>"[FILTERED]"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "dad4you"], ["password_digest", "$2a$12$IhbRTVcmAPswS65kVrl3yuY7T3Ixo4gyM0A7VARDcLoEhTFD8UFv."], ["created_at", "2020-07-28 22:10:10.732980"], ["updated_at", "2020-07-28 22:10:10.732980"]]
+  ↳ app/controllers/users_controller.rb:10
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+Completed 200 OK in 240ms (Views: 0.4ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/gifts" for ::1 at 2020-07-28 17:10:10 -0500
+Processing by GiftsController#index as */*
+  [1m[36mGift Load (0.2ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts"[0m
+  ↳ app/controllers/gifts_controller.rb:4
+Completed 200 OK in 33ms (Views: 31.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 17:10:17 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"1", "gift_id"=>"3", "favorite"=>{"user_id"=>"1", "gift_id"=>"3"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["gift_id", 3], ["created_at", "2020-07-28 22:10:17.838175"], ["updated_at", "2020-07-28 22:10:17.838175"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 67ms (Views: 0.4ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 17:10:21 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"1", "gift_id"=>"2", "favorite"=>{"user_id"=>"1", "gift_id"=>"2"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.0ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["gift_id", 2], ["created_at", "2020-07-28 22:10:21.666255"], ["updated_at", "2020-07-28 22:10:21.666255"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 17:10:22 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"1", "gift_id"=>"1", "favorite"=>{"user_id"=>"1", "gift_id"=>"1"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["gift_id", 1], ["created_at", "2020-07-28 22:10:22.936953"], ["updated_at", "2020-07-28 22:10:22.936953"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/users/1/favorites" for ::1 at 2020-07-28 17:10:27 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 41ms (Views: 3.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1/favorites" for ::1 at 2020-07-28 17:10:32 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users" for ::1 at 2020-07-28 17:14:15 -0500
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"dad4you", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "dad4you"], ["password_digest", "$2a$12$IA89cs0uswpXFj92pZC1oeCzKRR26lcU/bYngT5TJenqueMtxnEQS"], ["created_at", "2020-07-28 22:14:15.803769"], ["updated_at", "2020-07-28 22:14:15.803769"]]
+  ↳ app/controllers/users_controller.rb:10
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+Completed 200 OK in 215ms (Views: 0.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/gifts" for ::1 at 2020-07-28 17:14:15 -0500
+Processing by GiftsController#index as */*
+  [1m[36mGift Load (0.2ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts"[0m
+  ↳ app/controllers/gifts_controller.rb:4
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.2ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+Migrating to CreateUsers (20190912184815)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190912184815_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190912184815"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+Migrating to CreateGifts (20190912185040)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "gifts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "price" integer, "description" varchar, "link" varchar, "image" varchar, "category" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190912185040_create_gifts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190912185040"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (22.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+Migrating to CreateFavorites (20190912185137)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "gift_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_d15744e438"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_e68ed51a15"
+FOREIGN KEY ("gift_id")
+  REFERENCES "gifts" ("id")
+)[0m
+  ↳ db/migrate/20190912185137_create_favorites.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/migrate/20190912185137_create_favorites.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_gift_id" ON "favorites" ("gift_id")[0m
+  ↳ db/migrate/20190912185137_create_favorites.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190912185137"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-07-28 22:15:44.273832"], ["updated_at", "2020-07-28 22:15:44.273832"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[36mFavorite Destroy (0.1ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  ↳ db/seeds.rb:8
+  [1m[36mGift Destroy (0.1ms)[0m  [1m[31mDELETE FROM "gifts"[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (0.1ms)[0m  [1m[31mDELETE FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Make the Bed"], ["description", "Make the Bed First so that you start the day off right"], ["link", "https://www.youtube.com/watch?v=qWJK5y1YZqE"], ["image", "http://www.nacd.org/wp-content/uploads/2018/06/making_your_bed.jpg"], ["category", "Morning Tasks"], ["created_at", "2020-07-28 22:15:55.310864"], ["updated_at", "2020-07-28 22:15:55.310864"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Take Your Pills"], ["description", "Take one Multivitamin, one Vitamin E fish oil, 1 bronkaid"], ["link", "https://www.webmd.com/vitamins-and-supplements/ss/slideshow-best-ways-to-take-different-vitamins"], ["image", "http://2zcb9n15d8i73ncvp0lwwrct.wpengine.netdna-cdn.com/wp-content/uploads/The-Truth-About-Vitamins-To-Take-or-Not-To-Take-350x193.jpg"], ["category", "Morning Tasks"], ["created_at", "2020-07-28 22:15:55.314484"], ["updated_at", "2020-07-28 22:15:55.314484"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Go To The Gym to Workout"], ["description", "40 min cardio, isolate restance training, core training "], ["link", "https://www.foxfitnesstx.com/"], ["image", "https://img.etimg.com/photo/msid-74747053,quality-100/for-miles-a-great-bodyweight-workout-would-include-squats-push-ups-walking-lunges-.jpg"], ["category", "Morning Tasks"], ["created_at", "2020-07-28 22:15:55.318027"], ["updated_at", "2020-07-28 22:15:55.318027"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Let the Dog Out and Feed Him"], ["description", "while my oatmeal is in the microwave take Rambo out to putty then let him eat."], ["link", "https://www.akc.org/expert-advice/training/ways-you-might-be-ruining-your-dogs-walk/"], ["image", "https://dogpsychology101.com/wp-content/uploads/2019/01/golden_walking_body_image.jpg"], ["category", "Morning Tasks"], ["created_at", "2020-07-28 22:15:55.321293"], ["updated_at", "2020-07-28 22:15:55.321293"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Eat a Healthy Breackfast"], ["description", "Eat Oatmeal for Breakfast everyday"], ["link", "https://www.healthline.com/nutrition/12-best-foods-to-eat-in-morning"], ["image", "https://images.heb.com/is/image/HEBGrocery/001771858-1?"], ["category", "Morning Tasks"], ["created_at", "2020-07-28 22:15:55.325052"], ["updated_at", "2020-07-28 22:15:55.325052"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Work on Coding Project"], ["description", "Start out by setting your goalsfor the day. Then get busy."], ["link", "https://www.wanderlustworker.com/the-8-best-programming-habits-all-coders-should-have/"], ["image", "https://code.energy/wp-content/uploads/coder-at-night.jpg"], ["category", "All Day Task"], ["created_at", "2020-07-28 22:15:55.328397"], ["updated_at", "2020-07-28 22:15:55.328397"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Eat a Healthy Lunch"], ["description", "Eat a high protein low starch lunch. Your goal for the day is to take in 180 grms of protein per day."], ["link", "https://www.myfooddata.com/articles/foods-highest-in-protein.php"], ["image", "https://www.myfooddata.com/images/intro/high-protein-foods.jpg"], ["category", "Mid-Day Tasks"], ["created_at", "2020-07-28 22:15:55.331046"], ["updated_at", "2020-07-28 22:15:55.331046"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.5ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Lay Something Out For Supper"], ["description", "Look at high protein recipe ideas. Aslo conform to the mediterranean diet, add up your daily protein intake"], ["link", "https://www.self.com/gallery/10-high-protein-dinners-you-can-make-in-20-minutes-or-less"], ["image", "https://media.self.com/photos/5a3823d22323e96043af7f58/master/w_1600%2Cc_limit/High-Protein-Dinners.jpg"], ["category", "Evening Tasks"], ["created_at", "2020-07-28 22:15:55.337464"], ["updated_at", "2020-07-28 22:15:55.337464"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Vaccuum The  Floor"], ["description", "Vacuum the floor after super to help burn off the calories, and walk the dog again."], ["link", "https://www.marthastewart.com/1109836/golden-rules-vacuuming"], ["image", "https://1xmmzh397wwl19zunv1as9uy-wpengine.netdna-ssl.com/wp-content/uploads/2015/10/vacuum-cleaning.jpg"], ["category", "Evening Tasks"], ["created_at", "2020-07-28 22:15:55.352687"], ["updated_at", "2020-07-28 22:15:55.352687"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Cook a Healthy Supper"], ["description", "Keep away efrom starches. Snack on protein bars and nuts"], ["link", "https://www.eatthis.com/25-best-protein-snacks/"], ["image", "https://i2.wp.com/www.eatthis.com/wp-content/uploads/media/images/ext/455614788/protein-bars-low-sugar.jpg"], ["category", "Evening Tasks"], ["created_at", "2020-07-28 22:15:55.355526"], ["updated_at", "2020-07-28 22:15:55.355526"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Clean The Dishes"], ["description", "Make sure all the disshes are rinsed off and put in the dishwasher"], ["link", "https://www.busybudgeter.com/the-easiest-routine-to-wash-dishes-never-get-behind-again/"], ["image", "https://www.a1-cleaningservices.com/wp-content/uploads/2020/01/Dishwashing-Plates-300x195.jpg"], ["category", "Evening Tasks"], ["created_at", "2020-07-28 22:15:55.358623"], ["updated_at", "2020-07-28 22:15:55.358623"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Check Your Tasks to Make Sure You Have Completed Them All"], ["description", "Check taskify to see if there are any unfinished tasks. If there are some unfinished tasks that aren't crucial, give yourself a pat on the back and deal with it tomorrow"], ["link", "https://www.blog.daydesigner.com/assess-your-personal-productivity/"], ["image", "http://barbschmidt.com/wp-content/uploads/2015/02/web-2-27-15.jpg"], ["category", "Evening Tasks"], ["created_at", "2020-07-28 22:15:55.361825"], ["updated_at", "2020-07-28 22:15:55.361825"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+Started POST "/users" for ::1 at 2020-07-28 17:16:43 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"dad4you", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "dad4you"], ["password_digest", "$2a$12$0ukL7xkyzKyHGZvrnf62leXObBky1dp9VvmLVV/mkb3Tq09YyrqSO"], ["created_at", "2020-07-28 22:16:43.934761"], ["updated_at", "2020-07-28 22:16:43.934761"]]
+  ↳ app/controllers/users_controller.rb:10
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+Completed 200 OK in 219ms (Views: 0.4ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/gifts" for ::1 at 2020-07-28 17:16:43 -0500
+Processing by GiftsController#index as */*
+  [1m[36mGift Load (0.2ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts"[0m
+  ↳ app/controllers/gifts_controller.rb:4
+Completed 200 OK in 11ms (Views: 7.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 17:17:10 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"1", "gift_id"=>"3", "favorite"=>{"user_id"=>"1", "gift_id"=>"3"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["gift_id", 3], ["created_at", "2020-07-28 22:17:10.049881"], ["updated_at", "2020-07-28 22:17:10.049881"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (1.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 13ms (Views: 0.3ms | ActiveRecord: 2.9ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 17:17:11 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"1", "gift_id"=>"4", "favorite"=>{"user_id"=>"1", "gift_id"=>"4"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.0ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["gift_id", 4], ["created_at", "2020-07-28 22:17:11.180827"], ["updated_at", "2020-07-28 22:17:11.180827"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 6ms (Views: 0.6ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 17:17:12 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"1", "gift_id"=>"2", "favorite"=>{"user_id"=>"1", "gift_id"=>"2"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.0ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["gift_id", 2], ["created_at", "2020-07-28 22:17:12.698399"], ["updated_at", "2020-07-28 22:17:12.698399"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/users/1/favorites" for ::1 at 2020-07-28 17:17:16 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 7ms (Views: 4.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1/favorites" for ::1 at 2020-07-28 17:17:51 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/users" for ::1 at 2020-07-28 17:32:08 -0500
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"dad4you", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "dad4you"], ["password_digest", "$2a$12$mmeitgdkIeMLzgQKwyRzeuNkRuMWq99qvze/.EaZSGXY2XBctrIpC"], ["created_at", "2020-07-28 22:32:08.763395"], ["updated_at", "2020-07-28 22:32:08.763395"]]
+  ↳ app/controllers/users_controller.rb:10
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+Completed 200 OK in 215ms (Views: 0.4ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/gifts" for ::1 at 2020-07-28 17:32:08 -0500
+Processing by GiftsController#index as */*
+  [1m[36mGift Load (4.3ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts"[0m
+  ↳ app/controllers/gifts_controller.rb:4
+Completed 200 OK in 7ms (Views: 2.2ms | ActiveRecord: 4.3ms)
+
+
+  [1m[35m (11.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ?[0m  [["key", "environment"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+Migrating to CreateUsers (20190912184815)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "password_digest" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190912184815_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190912184815"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (17.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+Migrating to CreateGifts (20190912185040)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "gifts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "price" integer, "description" varchar, "link" varchar, "image" varchar, "category" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20190912185040_create_gifts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190912185040"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (11.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+Migrating to CreateFavorites (20190912185137)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "favorites" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "gift_id" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL, CONSTRAINT "fk_rails_d15744e438"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_e68ed51a15"
+FOREIGN KEY ("gift_id")
+  REFERENCES "gifts" ("id")
+)[0m
+  ↳ db/migrate/20190912185137_create_favorites.rb:3
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_user_id" ON "favorites" ("user_id")[0m
+  ↳ db/migrate/20190912185137_create_favorites.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE  INDEX "index_favorites_on_gift_id" ON "favorites" ("gift_id")[0m
+  ↳ db/migrate/20190912185137_create_favorites.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20190912185137"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (11.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[36mActiveRecord::InternalMetadata Create (1.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-07-28 22:44:36.214222"], ["updated_at", "2020-07-28 22:44:36.214222"]]
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/bin/rake:23
+  [1m[36mFavorite Destroy (18.6ms)[0m  [1m[31mDELETE FROM "favorites"[0m
+  ↳ db/seeds.rb:8
+  [1m[36mGift Destroy (5.4ms)[0m  [1m[31mDELETE FROM "gifts"[0m
+  ↳ db/seeds.rb:9
+  [1m[36mUser Destroy (6.6ms)[0m  [1m[31mDELETE FROM "users"[0m
+  ↳ db/seeds.rb:10
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (5.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Make the Bed"], ["description", "Make the Bed First so that you start the day off right"], ["link", "https://www.youtube.com/watch?v=qWJK5y1YZqE"], ["image", "http://www.nacd.org/wp-content/uploads/2018/06/making_your_bed.jpg"], ["category", "Morning Tasks"], ["created_at", "2020-07-28 22:44:50.807210"], ["updated_at", "2020-07-28 22:44:50.807210"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (3.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.5ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Take Your Pills"], ["description", "Take one Multivitamin, one Vitamin E fish oil, 1 bronkaid"], ["link", "https://www.webmd.com/vitamins-and-supplements/ss/slideshow-best-ways-to-take-different-vitamins"], ["image", "https://i0.wp.com/www.eatthis.com/wp-content/uploads/2018/03/woman-taking-pill-supplement-water.jpg"], ["category", "Morning Tasks"], ["created_at", "2020-07-28 22:44:50.817974"], ["updated_at", "2020-07-28 22:44:50.817974"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (14.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Go To The Gym to Workout"], ["description", "40 min cardio, isolate restance training, core training "], ["link", "https://www.foxfitnesstx.com/"], ["image", "https://img.etimg.com/photo/msid-74747053,quality-100/for-miles-a-great-bodyweight-workout-would-include-squats-push-ups-walking-lunges-.jpg"], ["category", "Morning Tasks"], ["created_at", "2020-07-28 22:44:50.834781"], ["updated_at", "2020-07-28 22:44:50.834781"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (20.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.5ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Let the Dog Out and Feed Him"], ["description", "while my oatmeal is in the microwave take Rambo out to putty then let him eat."], ["link", "https://www.akc.org/expert-advice/training/ways-you-might-be-ruining-your-dogs-walk/"], ["image", "https://dogpsychology101.com/wp-content/uploads/2019/01/golden_walking_body_image.jpg"], ["category", "Morning Tasks"], ["created_at", "2020-07-28 22:44:50.856798"], ["updated_at", "2020-07-28 22:44:50.856798"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Eat a Healthy Breackfast"], ["description", "Eat Oatmeal for Breakfast everyday"], ["link", "https://www.healthline.com/nutrition/12-best-foods-to-eat-in-morning"], ["image", "https://images.heb.com/is/image/HEBGrocery/001771858-1?"], ["category", "Morning Tasks"], ["created_at", "2020-07-28 22:44:50.860007"], ["updated_at", "2020-07-28 22:44:50.860007"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Work on Coding Project"], ["description", "Start out by setting your goals for the day."], ["link", "https://www.wanderlustworker.com/the-8-best-programming-habits-all-coders-should-have/"], ["image", "https://code.energy/wp-content/uploads/coder-at-night.jpg"], ["category", "All Day Task"], ["created_at", "2020-07-28 22:44:50.863031"], ["updated_at", "2020-07-28 22:44:50.863031"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Eat a Healthy Lunch"], ["description", "Your goal for the day is to take in 180 grms of protein per day."], ["link", "https://www.myfooddata.com/articles/foods-highest-in-protein.php"], ["image", "https://www.myfooddata.com/images/intro/high-protein-foods.jpg"], ["category", "Mid-Day Tasks"], ["created_at", "2020-07-28 22:44:50.866013"], ["updated_at", "2020-07-28 22:44:50.866013"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Lay Something Out For Supper"], ["description", "Look at high protein recipe ideas."], ["link", "https://www.self.com/gallery/10-high-protein-dinners-you-can-make-in-20-minutes-or-less"], ["image", "https://media.self.com/photos/5a3823d22323e96043af7f58/master/w_1600%2Cc_limit/High-Protein-Dinners.jpg"], ["category", "Evening Tasks"], ["created_at", "2020-07-28 22:44:50.869293"], ["updated_at", "2020-07-28 22:44:50.869293"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.4ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Vaccuum The  Floor"], ["description", "Vacuum the floor after super to help burn off the calories."], ["link", "https://www.marthastewart.com/1109836/golden-rules-vacuuming"], ["image", "https://1xmmzh397wwl19zunv1as9uy-wpengine.netdna-ssl.com/wp-content/uploads/2015/10/vacuum-cleaning.jpg"], ["category", "Evening Tasks"], ["created_at", "2020-07-28 22:44:50.872715"], ["updated_at", "2020-07-28 22:44:50.872715"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Cook a Healthy Supper"], ["description", "Keep away efrom starches. Snack on protein bars and nuts"], ["link", "https://www.eatthis.com/25-best-protein-snacks/"], ["image", "https://i2.wp.com/www.eatthis.com/wp-content/uploads/media/images/ext/455614788/protein-bars-low-sugar.jpg"], ["category", "Evening Tasks"], ["created_at", "2020-07-28 22:44:50.875747"], ["updated_at", "2020-07-28 22:44:50.875747"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Clean The Dishes"], ["description", "Make sure all the disshes are rinsed off and put in the dishwasher"], ["link", "https://www.busybudgeter.com/the-easiest-routine-to-wash-dishes-never-get-behind-again/"], ["image", "https://www.a1-cleaningservices.com/wp-content/uploads/2020/01/Dishwashing-Plates-300x195.jpg"], ["category", "Evening Tasks"], ["created_at", "2020-07-28 22:44:50.878793"], ["updated_at", "2020-07-28 22:44:50.878793"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ db/seeds.rb:28
+  [1m[36mGift Create (0.3ms)[0m  [1m[32mINSERT INTO "gifts" ("title", "description", "link", "image", "category", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["title", "Check Your Tasks to Make Sure You Have Completed Them All"], ["description", "Check taskify to see if there are any unfinished tasks."], ["link", "https://www.blog.daydesigner.com/assess-your-personal-productivity/"], ["image", "http://barbschmidt.com/wp-content/uploads/2015/02/web-2-27-15.jpg"], ["category", "Evening Tasks"], ["created_at", "2020-07-28 22:44:50.882018"], ["updated_at", "2020-07-28 22:44:50.882018"]]
+  ↳ db/seeds.rb:28
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ db/seeds.rb:28
+Started POST "/users" for ::1 at 2020-07-28 17:45:20 -0500
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"dad4you", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+  [1m[36mUser Create (13.0ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "dad4you"], ["password_digest", "$2a$12$/FGTxXGPEmJo1zn9X5lmx.I.2Ho5YphDMG5jtbr.EaOR9ofyNNImK"], ["created_at", "2020-07-28 22:45:20.923846"], ["updated_at", "2020-07-28 22:45:20.923846"]]
+  ↳ app/controllers/users_controller.rb:10
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+Completed 200 OK in 253ms (Views: 0.5ms | ActiveRecord: 14.9ms)
+
+
+Started GET "/gifts" for ::1 at 2020-07-28 17:45:21 -0500
+Processing by GiftsController#index as */*
+  [1m[36mGift Load (0.2ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts"[0m
+  ↳ app/controllers/gifts_controller.rb:4
+Completed 200 OK in 26ms (Views: 20.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 17:45:35 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"1", "gift_id"=>"1", "favorite"=>{"user_id"=>"1", "gift_id"=>"1"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (11.6ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["gift_id", 1], ["created_at", "2020-07-28 22:45:35.881934"], ["updated_at", "2020-07-28 22:45:35.881934"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (1.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 80ms (Views: 0.4ms | ActiveRecord: 13.9ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 17:45:36 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"1", "gift_id"=>"2", "favorite"=>{"user_id"=>"1", "gift_id"=>"2"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.0ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.4ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["gift_id", 2], ["created_at", "2020-07-28 22:45:36.732095"], ["updated_at", "2020-07-28 22:45:36.732095"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 17:45:38 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"1", "gift_id"=>"3", "favorite"=>{"user_id"=>"1", "gift_id"=>"3"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.0ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["gift_id", 3], ["created_at", "2020-07-28 22:45:38.667901"], ["updated_at", "2020-07-28 22:45:38.667901"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 2.3ms)
+
+
+Started DELETE "/favorites/1" for ::1 at 2020-07-28 17:45:39 -0500
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"1"}
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:37
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:38
+  [1m[36mFavorite Destroy (0.3ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = ?[0m  [["id", 1]]
+  ↳ app/controllers/favorites_controller.rb:38
+  [1m[35m (2.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:38
+Completed 204 No Content in 5ms (ActiveRecord: 2.6ms)
+
+
+Started DELETE "/favorites/2" for ::1 at 2020-07-28 17:45:40 -0500
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"2"}
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:37
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:38
+  [1m[36mFavorite Destroy (0.7ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = ?[0m  [["id", 2]]
+  ↳ app/controllers/favorites_controller.rb:38
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:38
+Completed 204 No Content in 5ms (ActiveRecord: 2.8ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 17:45:43 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"1", "gift_id"=>"4", "favorite"=>{"user_id"=>"1", "gift_id"=>"4"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.0ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["gift_id", 4], ["created_at", "2020-07-28 22:45:43.752370"], ["updated_at", "2020-07-28 22:45:43.752370"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 17:45:46 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"1", "gift_id"=>"2", "favorite"=>{"user_id"=>"1", "gift_id"=>"2"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.0ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 1], ["gift_id", 2], ["created_at", "2020-07-28 22:45:46.114183"], ["updated_at", "2020-07-28 22:45:46.114183"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (2.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/users/1/favorites" for ::1 at 2020-07-28 17:45:48 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 25ms (Views: 3.6ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/users" for ::1 at 2020-07-28 17:57:51 -0500
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"dad4you", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "dad4you"], ["password_digest", "$2a$12$jK195Nu7gyd7eLP4vqngwue54KqTquMIGQlp.sjiR5vnMyn7Uc04W"], ["created_at", "2020-07-28 22:57:52.029876"], ["updated_at", "2020-07-28 22:57:52.029876"]]
+  ↳ app/controllers/users_controller.rb:10
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+Completed 200 OK in 215ms (Views: 0.4ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/gifts" for ::1 at 2020-07-28 17:57:52 -0500
+Processing by GiftsController#index as */*
+  [1m[36mGift Load (16.6ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts"[0m
+  ↳ app/controllers/gifts_controller.rb:4
+Completed 200 OK in 19ms (Views: 2.6ms | ActiveRecord: 16.6ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 18:02:08 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"2", "gift_id"=>"3", "favorite"=>{"user_id"=>"2", "gift_id"=>"3"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (50.5ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 2], ["gift_id", 3], ["created_at", "2020-07-28 23:02:08.232777"], ["updated_at", "2020-07-28 23:02:08.232777"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (30.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 85ms (Views: 0.3ms | ActiveRecord: 81.5ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 18:02:09 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"2", "gift_id"=>"2", "favorite"=>{"user_id"=>"2", "gift_id"=>"2"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.0ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 2], ["gift_id", 2], ["created_at", "2020-07-28 23:02:09.459322"], ["updated_at", "2020-07-28 23:02:09.459322"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (1.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 5ms (Views: 0.5ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 18:02:15 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"2", "gift_id"=>"1", "favorite"=>{"user_id"=>"2", "gift_id"=>"1"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.0ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 2], ["gift_id", 1], ["created_at", "2020-07-28 23:02:15.287099"], ["updated_at", "2020-07-28 23:02:15.287099"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (2.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 6ms (Views: 0.3ms | ActiveRecord: 2.6ms)
+
+
+Started DELETE "/favorites/7" for ::1 at 2020-07-28 18:02:17 -0500
+Processing by FavoritesController#destroy as */*
+  Parameters: {"id"=>"7"}
+  [1m[36mFavorite Load (0.1ms)[0m  [1m[34mSELECT  "favorites".* FROM "favorites" WHERE "favorites"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:37
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:38
+  [1m[36mFavorite Destroy (0.3ms)[0m  [1m[31mDELETE FROM "favorites" WHERE "favorites"."id" = ?[0m  [["id", 7]]
+  ↳ app/controllers/favorites_controller.rb:38
+  [1m[35m (1.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:38
+Completed 204 No Content in 4ms (ActiveRecord: 2.3ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-28 18:02:19 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"2", "gift_id"=>"2", "favorite"=>{"user_id"=>"2", "gift_id"=>"2"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.0ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 2], ["gift_id", 2], ["created_at", "2020-07-28 23:02:19.494523"], ["updated_at", "2020-07-28 23:02:19.494523"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/users/2/favorites" for ::1 at 2020-07-28 18:02:21 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 2]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/users" for ::1 at 2020-07-29 14:29:45 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/warren.harper/.rvm/gems/ruby-2.6.1/gems/activerecord-5.2.3/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#create as JSON
+  Parameters: {"user"=>{"email"=>"dad4you", "password"=>"[FILTERED]"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+  [1m[36mUser Create (38.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "dad4you"], ["password_digest", "$2a$12$lxeGTkudlvnMzVWrbIiR2udEiF28XvSC.NeLOOT0nI9SCu7Nz4J4i"], ["created_at", "2020-07-29 19:29:46.528334"], ["updated_at", "2020-07-29 19:29:46.528334"]]
+  ↳ app/controllers/users_controller.rb:10
+  [1m[35m (1.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:10
+Completed 200 OK in 257ms (Views: 0.4ms | ActiveRecord: 40.8ms)
+
+
+Started GET "/gifts" for ::1 at 2020-07-29 14:29:46 -0500
+Processing by GiftsController#index as */*
+  [1m[36mGift Load (15.5ms)[0m  [1m[34mSELECT "gifts".* FROM "gifts"[0m
+  ↳ app/controllers/gifts_controller.rb:4
+Completed 200 OK in 97ms (Views: 16.1ms | ActiveRecord: 16.0ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-29 14:29:53 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"3", "gift_id"=>"2", "favorite"=>{"user_id"=>"3", "gift_id"=>"2"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (12.7ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 3], ["gift_id", 2], ["created_at", "2020-07-29 19:29:53.577608"], ["updated_at", "2020-07-29 19:29:53.577608"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (1.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 44ms (Views: 0.2ms | ActiveRecord: 14.7ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-29 14:29:55 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"3", "gift_id"=>"1", "favorite"=>{"user_id"=>"3", "gift_id"=>"1"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.0ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (8.2ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 3], ["gift_id", 1], ["created_at", "2020-07-29 19:29:55.332695"], ["updated_at", "2020-07-29 19:29:55.332695"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (12.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 24ms (Views: 0.2ms | ActiveRecord: 21.0ms)
+
+
+Started POST "/favorites" for ::1 at 2020-07-29 14:29:56 -0500
+Processing by FavoritesController#create as JSON
+  Parameters: {"user_id"=>"3", "gift_id"=>"3", "favorite"=>{"user_id"=>"3", "gift_id"=>"3"}}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mGift Load (0.0ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[36mFavorite Create (0.3ms)[0m  [1m[32mINSERT INTO "favorites" ("user_id", "gift_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["user_id", 3], ["gift_id", 3], ["created_at", "2020-07-29 19:29:56.378767"], ["updated_at", "2020-07-29 19:29:56.378767"]]
+  ↳ app/controllers/favorites_controller.rb:9
+  [1m[35m (96.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/favorites_controller.rb:9
+Completed 200 OK in 101ms (Views: 0.2ms | ActiveRecord: 97.2ms)
+
+
+Started GET "/users/3/favorites" for ::1 at 2020-07-29 14:29:59 -0500
+Processing by FavoritesController#index as */*
+  Parameters: {"user_id"=>"3"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:18
+  [1m[36mFavorite Load (0.2ms)[0m  [1m[34mSELECT "favorites".* FROM "favorites" WHERE "favorites"."user_id" = ?[0m  [["user_id", 3]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+  [1m[36mGift Load (0.1ms)[0m  [1m[34mSELECT  "gifts".* FROM "gifts" WHERE "gifts"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/favorites_controller.rb:20
+Completed 200 OK in 78ms (Views: 4.6ms | ActiveRecord: 0.6ms)
+
+
