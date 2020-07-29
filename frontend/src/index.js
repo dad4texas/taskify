@@ -1,9 +1,9 @@
 // JS file was required at bottom of HTML file so no need for DOMContentLoaded
 const BASE_URL = "http://localhost:3000"
-const GIFTS_URL = `${BASE_URL}/gifts`
+const TASKS_URL = `${BASE_URL}/tasks`
 const USERS_URL = `${BASE_URL}/users`
 const FAVORITES_URL = `${BASE_URL}/favorites`
-const giftCollection = document.querySelector('#gift-collection')
+const taskCollection = document.querySelector('#gift-collection')
 const favCollection = document.querySelector('#fav-collection')
 const likeButton = document.querySelector('.like-btn')
 const signupForm = document.querySelector('#signup-form')
@@ -12,14 +12,14 @@ const header = document.querySelector('.header-banner')
 const logout = document.querySelector('.logout')
 let currentUser
 
-class Gift {
-    constructor(giftAttributes) {
-        this.title = giftAttributes.title;
-        this.category = giftAttributes.category;
-        this.description = giftAttributes.description;
-        this.link = giftAttributes.link;
-        this.image = giftAttributes.image;
-        this.id = giftAttributes.id;
+class Task {
+    constructor(taskAttributes) {
+        this.title = taskAttributes.title;
+        this.category = taskAttributes.category;
+        this.description = taskAttributes.description;
+        this.link = taskAttributes.link;
+        this.image = taskAttributes.image;
+        this.id = taskAttributes.id;
     }
 
     render() {
@@ -33,47 +33,47 @@ class Gift {
     }
 }
 
-function putGiftsOnDom(giftArray){
-    giftCollection.innerHTML = `<h2 class="subheader">All Tasks</h2>
+function putTasksOnDom(taskArray){
+    taskCollection.innerHTML = `<h2 class="subheader">All Tasks</h2>
                                 <h4 class="favorites-link">View My Finished Tasks ♡</h4>`
-    giftArray.forEach(gift => {
-        giftCollection.innerHTML += new Gift(gift).render()
+    taskArray.forEach(task => {
+        taskCollection.innerHTML += new Task(task).render()
 
         // `<div class="card">
-        //   <h2>${gift.title} ($${gift.price})</h2>
-        //   <h4 class="gift-cat">${gift.category}</h4>
-        //   <a href=${gift.link} target="_blank"><img src=${gift.image} class="gift-image" /></a>
-        //   <p>${gift.description}<p>
-        //   <button data-gift-id=${gift.id} class="like-btn">♡</button>
+        //   <h2>${task.title} ($${task.price})</h2>
+        //   <h4 class="task-cat">${task.category}</h4>
+        //   <a href=${task.link} target="_blank"><img src=${task.image} class="gift-image" /></a>
+        //   <p>${task.description}<p>
+        //   <button data-tgift-id=${task.id} class="like-btn">♡</button>
         // </div>`
     })
 }
 
 function putFavoritesOnDom(favArray){
     favCollection.innerHTML = `<h2 class="subheader">My Favorites</h2>
-                               <h4 class="back-link">←Back to Gifts</h4>`
+                               <h4 class="back-link">←Back to Tasks</h4>`
     favArray.forEach(favorite => {
         favCollection.innerHTML += `<div class="card">
-          <h2>${favorite.gift.title} ($${favorite.gift.price})</h2>
-          <h4 class="gift-cat">${favorite.gift.category}</h4>
-          <a href=${favorite.gift.link} target="_blank"><img src=${favorite.gift.image} class="gift-image" /></a>
-          <p>${favorite.gift.description}<p>
-          <button data-gift-id=${favorite.gift.id} class="like-btn" style="color:red;">♡</button>
+          <h2>${favorite.task.title} ($${favorite.task})</h2>
+          <h4 class="gift-cat">${favorite.task.category}</h4>
+          <a href=${favorite.task.link} target="_blank"><img src=${favorite.task.image} class="gift-image" /></a>
+          <p>${favorite.task.description}<p>
+          <button data-gift-id=${favorite.task.id} class="like-btn" style="color:red;">♡</button>
         </div>`
     })
 }
 
-function fetchGifts(){
-    fetch(GIFTS_URL)
+function fetchTasks(){
+    fetch(TASKS_URL)
     .then(res => res.json())
-    .then(gifts => putGiftsOnDom(gifts))
+    .then(tasks => putTasksOnDom(tasks))
 }
 
 function fetchFavorites(){
     fetch(BASE_URL + '/users/' + currentUser.id + '/favorites')
     .then(res => res.json())
     .then(favorites => putFavoritesOnDom(favorites))
-}
+} 
 
 signupForm.addEventListener('submit', function(e){
     e.preventDefault()
@@ -102,9 +102,9 @@ signupForm.addEventListener('submit', function(e){
     )
 })
 
-giftCollection.addEventListener('click', function(e) {
+taskCollection.addEventListener('click', function(e) {
     if (event.target.className == "favorites-link") {
-        giftCollection.style.display = 'none';
+        taskCollection.style.display = 'none';
         fetchFavorites();
         favCollection.style.display = 'initial';
     }
@@ -113,7 +113,7 @@ giftCollection.addEventListener('click', function(e) {
 favCollection.addEventListener('click', function(e) {
     if (event.target.className == "back-link") {
         favCollection.style.display = 'none';
-        giftCollection.style.display = 'initial';
+        taskCollection.style.display = 'initial';
     }
 })
 
@@ -122,10 +122,10 @@ function loggedInUser(object){
     signupForm.style.display = 'none'
     welcome.innerHTML = `<h3>Hello, <i>${currentUser.email}</i> !</h3>`
     logout.innerText = "Logout"
-    fetchGifts()
+    fetchTasks()
 }
 
-giftCollection.addEventListener('click', function(e){
+taskCollection.addEventListener('click', function(e){
     // console.log(event.target.className, event.target.style.color)
     // e.preventDefault() was preventing images from being clickable
     if ((event.target.className == "like-btn") && (event.target.style.color !== 'red')) {
@@ -138,7 +138,7 @@ giftCollection.addEventListener('click', function(e){
                 },
                 body: JSON.stringify({
                         user_id: `${currentUser.id}`,
-                        gift_id: `${event.target.dataset.giftId}`
+                        task_id: `${event.target.dataset.taskId}`
                 })
         })
         .then( res => res.json())

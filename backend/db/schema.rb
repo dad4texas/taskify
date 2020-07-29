@@ -14,16 +14,15 @@ ActiveRecord::Schema.define(version: 2019_09_12_185137) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "gift_id"
+    t.integer "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["gift_id"], name: "index_favorites_on_gift_id"
+    t.index ["task_id"], name: "index_favorites_on_task_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
-  create_table "gifts", force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
     t.string "title"
-    t.integer "price"
     t.string "description"
     t.string "link"
     t.string "image"

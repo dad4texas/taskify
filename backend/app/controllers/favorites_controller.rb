@@ -17,13 +17,13 @@ class FavoritesController < ApplicationController
         user_id = params[:user_id]
         user = User.find(user_id)
         favorites = user.favorites
-        render json: favorites, include: [:gift]
+        render json: favorites, include: [:task]
         # rendering related object data in JSON by nesting models
         # result:
           #       {
           # "id": 2,
           # "user_id": 1,
-          # "gift": {
+          # "task": {
           #   "id": 4,
           #   "title": "Airpods",
           #   "category": "tech",
@@ -41,6 +41,6 @@ class FavoritesController < ApplicationController
 
 private
     def favorite_params
-      params.require(:favorite).permit(:user_id, :gift_id)
+      params.require(:favorite).permit(:user_id, :task_id)
     end
 end

@@ -6,10 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 Favorite.delete_all
-Gift.delete_all
+Task.delete_all
 User.delete_all
 
-gifts =
+tasks =
 [{title: "Make the Bed", description: "Make the Bed First so that you start the day off right", link: "https://www.youtube.com/watch?v=qWJK5y1YZqE", image: "http://www.nacd.org/wp-content/uploads/2018/06/making_your_bed.jpg", category:"Morning Tasks"},
   {title: "Take Your Pills", description: "Take one Multivitamin, one Vitamin E fish oil, 1 bronkaid", link: "https://www.webmd.com/vitamins-and-supplements/ss/slideshow-best-ways-to-take-different-vitamins", image: "https://i0.wp.com/www.eatthis.com/wp-content/uploads/2018/03/woman-taking-pill-supplement-water.jpg", category:"Morning Tasks"},
   {title: "Go To The Gym to Workout", description: "40 min cardio, isolate restance training, core training ", link: "https://www.foxfitnesstx.com/", image: "https://img.etimg.com/photo/msid-74747053,quality-100/for-miles-a-great-bodyweight-workout-would-include-squats-push-ups-walking-lunges-.jpg", category:"Morning Tasks"},
@@ -24,6 +24,6 @@ gifts =
   {title: "Check Your Tasks to Make Sure You Have Completed Them All", description: "Check taskify to see if there are any unfinished tasks.", link: "https://www.blog.daydesigner.com/assess-your-personal-productivity/", image: "http://barbschmidt.com/wp-content/uploads/2015/02/web-2-27-15.jpg", category:"Evening Tasks"}]
 
 
-gifts.each do |gift|
-  Gift.create(gift)
+tasks.each do |task|
+  Task.create(task)
 end
